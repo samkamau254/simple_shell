@@ -37,7 +37,7 @@ typedef struct shdata
 	char *cmd_path;
 } shdata_t;
 
-int _strlen(char *s);
+int strlength(char *str);
 int _strcmp(char *s1, char *s2);
 int shell(char *prog_name, FILE *input_file, char **env);
 void my_exit(shdata_t *shell_data);
@@ -48,10 +48,10 @@ char *_strncpy(char *dest, char *src, int n);
 void is_executable(shdata_t *shell_data, char **full_path, int *flag);
 int child_pid(shdata_t *shell_data, char *path);
 char *str_dup(char *s);
-char *_basename(char *path);
+char *base_name(char *path);
 int stderror_printf(FILE *stream, const char *str);
 char *_strncat(char *dest, char *src, int n);
-int _putchar(char c);
+int put_char(char c);
 void my_printf(const char *format, ...);
 shdata_t *create_shdata(char **env);
 void free_shdata(shdata_t *shell_data);
@@ -60,7 +60,7 @@ void _free(void **ptr);
 char *mem_cpy(char *dest, char *place, unsigned int k);
 void *_realloc(void *ptr, unsigned int old, unsigned int new_size);
 int exec_check(shdata_t *shell_data, char *prog_name);
-char *_strcpy(char *dest, char *src);
+char *str_cpy(char *dest, char *src);
 char *str_cat(char *dest, char *place);
 
 #endif
