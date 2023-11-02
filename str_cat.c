@@ -3,12 +3,12 @@
 /**
  * _strcat - concatenates two strings
  * @dest: initial string
- * @src: the string to be appended
+ * @place: the string to be appended
  *
  * Return: Returns a pointer to the resulting string dest
  */
 
-char *_strcat(char *dest, char *src)
+char *str_cat(char *dest, char *place)
 {
 	int i, j;
 
@@ -18,9 +18,9 @@ char *_strcat(char *dest, char *src)
 		i++;
 	}
 	j = 0;
-	while (src[j] != '\0')
+	while (place[j] != '\0')
 	{
-		dest[i] = src[j];
+		dest[i] = place[j];
 		i++;
 		j++;
 	}

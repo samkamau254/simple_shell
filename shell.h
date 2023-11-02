@@ -47,7 +47,7 @@ char *_strchr(char *s, char c);
 char *_strncpy(char *dest, char *src, int n);
 void is_executable(shdata_t *shell_data, char **full_path, int *flag);
 int child_pid(shdata_t *shell_data, char *path);
-char *_strdup(char *str);
+char *str_dup(char *s);
 char *_basename(char *path);
 int stderror_printf(FILE *stream, const char *str);
 char *_strncat(char *dest, char *src, int n);
@@ -61,6 +61,6 @@ char *mem_cpy(char *dest, char *place, unsigned int k);
 void *_realloc(void *ptr, unsigned int old, unsigned int new_size);
 int exec_check(shdata_t *shell_data, char *prog_name);
 char *_strcpy(char *dest, char *src);
-char *_strcat(char *dest, char *src);
+char *str_cat(char *dest, char *place);
 
 #endif

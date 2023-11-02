@@ -3,20 +3,20 @@
 /**
  * _strdup - Returns a pointer to a newly allocated space in memory
  * which contains a copy of the string given as a parameter
- * @str: String parameter
+ * @s: String parameter
  *
  * Return: Pointer to a new string which is duplicate of str
  */
 
-char *_strdup(char *str)
+char *str_dup(char *s)
 {
 	char *new;
 	int i, len;
 
-	if (str == NULL)
+	if (s == NULL)
 		return (NULL);
 	len = 0;
-	while (str[len] != '\0')
+	while (s[len] != '\0')
 	{
 		len++;
 	}
@@ -26,7 +26,7 @@ char *_strdup(char *str)
 		return (NULL);
 	for (i = 0; i < len; i++)
 	{
-		new[i] = str[i];
+		new[i] = s[i];
 	}
 	return (new);
 	free(new);
