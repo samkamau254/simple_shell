@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _create_shdata - initialize the shell data
+ * create_shell_data - initialize the shell data
  * @env: Environment variables
  *
  * Return: Shell structure
@@ -97,7 +97,7 @@ int simple_shell(char *name_of_prog, FILE *input, char **env)
 	size_t len = 0;
 	int value = 0;
 
-	shell_data = _create_shdata(env);
+	shell_data = create_shell_data(env);
 	if (shell_data == NULL)
 	{
 		perror("shell data");
@@ -121,7 +121,7 @@ int simple_shell(char *name_of_prog, FILE *input, char **env)
 		tokeni_ze(shell_data, &prev_cmd_size);
 		if (shell_data->command == NULL || shell_data->command[0] == NULL)
 			continue;
-		value = exec_check(shell_data, name_of_prog);
+		value = execute_check(shell_data, name_of_prog);
 	}
 	shdata_free(shell_data);
 	return (value);

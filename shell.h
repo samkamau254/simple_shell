@@ -38,28 +38,26 @@ typedef struct shdata
 } shdata_t;
 
 int strlength(char *str);
-int str_compare(char *s1, char *s2);
-int _shell(char *program_name, FILE *input_f, char **env);
+int str_compare(char *str1, char *str2);
+int simple_shell(char *program_name, FILE *input_f, char **env);
 void exitt(shdata_t *shell_data);
 void _env_ron(shdata_t *shell_data);
 bool built_in(char *command);
 char *str_chr(char *s, char c);
-char *_strncpy(char *dest, char *src, int n);
 void executable(shdata_t *shell_data, char **full_path, int *flag);
 int c_pid(shdata_t *shell_data, char *path);
 char *str_dup(char *s);
 char *base_name(char *path);
 int std_error_printf(FILE *stream, const char *string);
-char *_strncat(char *dest, char *src, int n);
 int put_char(char c);
 void print_f(const char *format, ...);
-shdata_t *_create_shdata(char **env);
-void _free_shdata(shdata_t *shell_data);
-void tokenize_it(shdata_t *shell_data, unsigned int *old_cmd);
+shdata_t *create_shell_data(char **env);
+void shdata_free(shdata_t *shell_data);
+void tokenize_it(shdata_t *shell_data, unsigned int *prev_cmd);
 void free_p(void **ptr);
 char *mem_cpy(char *dest, char *place, unsigned int k);
 void *re_alloc(void *ptr, unsigned int prev, unsigned int n_size);
-int exec_check(shdata_t *shell_data, char *prog_name);
+int execute_check(shdata_t *shell_data, char *program_name);
 char *str_cpy(char *dest, char *src);
 char *str_cat(char *dest, char *place);
 
