@@ -6,7 +6,8 @@
  *
  * Return: Shell structure
  */
-shdata_t *_create_shdata(char **env)
+
+shdata_t *create_shell_data(char **env);
 {
 	shdata_t *_shell_data = malloc(sizeof(shdata_t));
 
@@ -25,13 +26,13 @@ shdata_t *_create_shdata(char **env)
 }
 
 /**
- * _free_shdata - frees the user input
+ * shdata_free - frees the user input
  * @shell_data: Shell structure
  */
-void _free_shdata(shdata_t *shell_data)
+void shdata_free(shdata_t *shell_data)
 {
-	_free((void **)&shell_data->user_input);
-	_free((void **)&shell_data->command);
+	free_p((void **)&shell_data->user_input);
+	free_p((void **)&shell_data->command);
 	free(shell_data);
 }
 
@@ -41,14 +42,14 @@ void _free_shdata(shdata_t *shell_data)
  * @prev_cmd: Old command
  */
 
-void tokenize_it(shdata_t *shell_data, unsigned int *prev_cmd)
+void tokeni_ze(shdata_t *shell_data, unsigned int *prev_cmd)
 {
 	char *input_cpy, *token;
 	int i = 0, argc = 0;
 	unsigned int new_cmd;
 	char **cmd;
 
-	input_cpy = _strdup(shell_data->user_input);
+	input_cpy = str_dup(shell_data->user_input);
 	if (input_cpy == NULL)
 	{
 		perror("strdup");
@@ -80,15 +81,15 @@ void tokenize_it(shdata_t *shell_data, unsigned int *prev_cmd)
 }
 
 /**
- * _shell - simple UNIX command interpretor
- * @input_f: Input file to be read
- * @program_name: Program name to be printed on error
+ * simple_shell - simple UNIX command interpretor
+ * @input: Input file to be read
+ * @name_of_prog: Program name to be printed on error
  * @env: Environment variables
  *
  * Return: 1 if success and NULL otherwise
  */
 
-int _shell(char *program_name, FILE *input_f, char **env)
+int simple_shell(char *name_of_prog, FILE *input, char **env)
 {
 	unsigned int prev_cmd_size = 0;
 	shdata_t *shell_data;
@@ -110,19 +111,19 @@ int _shell(char *program_name, FILE *input_f, char **env)
 			write(STDOUT_FILENO, prompt, sizeof(prompt) - 1);
 		}
 		errno = 0;
-		if (getline(&shell_data->user_input, &len, input_f) == -1)
+		if (getline(&shell_data->user_input, &len, input) == -1)
 		{
 			if (errno == 0 || (errno == ENOTTY && !shell_data->interactive_mode))
 				break;
 			perror("getline");
 			continue;
 		}
-		tokenize_it(shell_data, &prev_cmd_size);
+		tokeni_ze(shell_data, &prev_cmd_size);
 		if (shell_data->command == NULL || shell_data->command[0] == NULL)
 			continue;
-		value = exec_check(shell_data, program_name);
+		value = execute_check(shell_data, name_of_prog);
 	}
-	free_shdata(shell_data);
+	shdata_free(shell_data);
 	return (value);
 }
 
@@ -138,12 +139,12 @@ int _shell(char *program_name, FILE *input_f, char **env)
 int main(int argc, char *argv[], char **env)
 {
 	FILE *input_file;
-	char *prog_name = _basename(argv[0]);
+	char *name_of_prog = base_name(argv[0]);
 	int value = 0;
 
 	if (argc == 1)
 	{
-		value = shell(prog_name, stdin, env);
+		value = simple_shell(name_of_prog, stdin, env);
 	}
 	else if (argc == 2)
 	{
@@ -153,7 +154,7 @@ int main(int argc, char *argv[], char **env)
 			perror("fopen");
 			exit(EXIT_FAILURE);
 		}
-		value = shell(prog_name, input_file, env);
+		value = simple_shell(name_of_prog, input_file, env);
 		fclose(input_file);
 	}
 	else
