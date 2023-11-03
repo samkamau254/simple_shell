@@ -1,0 +1,45 @@
+#include "shell.h"
+
+/**
+ * _free - frees a pointer
+ * @ptr: pointer to be freed
+ */
+void _free(void **ptr)
+{
+	if (ptr && *ptr)
+	{
+		free(*ptr);
+		*ptr = NULL;
+	}
+}
+
+/**
+ * _realloc - returns pointer to a new allocated block
+ * @ptr: Pointer to be reallocated
+ * @past: Old size
+ * @new_size: New size
+ *
+ * Return: Pointer to void
+ */
+void *re_alloc(void *ptr, unsigned int prev, unsigned int n_size)
+{
+	void *new_ptr;
+	unsigned int copy_size;
+
+	if (prev == n_size)
+		return (ptr);
+	if (n_size == 0)
+	{
+		free(ptr);
+		return (NULL);
+	}
+	new_ptr = malloc(n_size);
+	if (new_ptr == NULL)
+		return (NULL);
+	if (ptr == NULL)
+		return (new_ptr);
+	copy_size = prev < n_size ? prev : n_size;
+	_memcpy(new_ptr, ptr, copy_size);
+	free(ptr);
+	return (new_ptr);
+}
