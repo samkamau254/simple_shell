@@ -39,7 +39,7 @@ void *re_alloc(void *ptr, unsigned int prev, unsigned int n_size)
 	if (ptr == NULL)
 		return (new_ptr);
 	copy_size = prev < n_size ? prev : n_size;
-	_memcpy(new_ptr, ptr, copy_size);
+	mem_cpy(new_ptr, ptr, copy_size);
 	free(ptr);
 	return (new_ptr);
 }

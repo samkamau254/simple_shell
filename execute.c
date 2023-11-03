@@ -24,9 +24,9 @@ void executable(shdata_t *shell_data, char **full_path, int *flag)
 	path_token = strtok(original_path, ":");
 	while (path_token != NULL)
 	{
-		current = (strlength(shell_data->cmd[0]) +
+		current = (strlength(shell_data->command[0]) +
 				strlength(path_token) + 2) * sizeof(char);
-		copy = _realloc(*full_path, previous, current);
+		copy = re_alloc(*full_path, previous, current);
 		if (copy == NULL)
 		{
 			perror("realloc");
@@ -36,7 +36,7 @@ void executable(shdata_t *shell_data, char **full_path, int *flag)
 		*full_path = copy;
 		str_cpy(*full_path, path_token);
 		str_cat(*full_path, "/");
-		str_cat(*full_path, shell_data->cmd[0]);
+		str_cat(*full_path, shell_data->command[0]);
 		if (access(*full_path, X_OK) == 0)
 		{
 			*flag = 1;

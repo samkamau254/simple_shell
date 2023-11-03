@@ -8,7 +8,7 @@
  * Return: 1 if Success and NULL otherwise
  */
 
-int execute_check(shdata *shell_data, char *program_name);
+int execute_check(shdata_t *shell_data, char *program_name)
 {
 	char *command_path = NULL, *path = NULL;
 	int flag = 0, value = 0;
@@ -61,7 +61,7 @@ int c_pid(shdata_t *shell_data, char *path)
 	}
 	else if (c_pid == 0)
 	{
-		execve(path, shell_data->command, shell_data->_env_ron);
+		execve(path, shell_data->command, shell_data->env);
 		perror(path);
 		exit(EXIT_FAILURE);
 	}

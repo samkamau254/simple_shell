@@ -8,7 +8,7 @@ void exitt(shdata_t *shell_data)
 {
 	if (str_compare(shell_data->command[0], "exit") == 0)
 	{
-		shdata_free(shell_data);
+		_free_shdata(shell_data);
 		exit(EXIT_SUCCESS);
 	}
 }
@@ -16,7 +16,7 @@ void exitt(shdata_t *shell_data)
  * _env_ron - executes env builtin command
  * @shell_data: Shell's data structure
  */
-void _env_ron(shdata_t *data_in_shell);
+void _env_ron(shdata_t *data_in_shell)
 {
 	char **env;
 	int i;

@@ -50,7 +50,7 @@ void _printf(const char *format, ...)
 				str = *prog_name ? prog_name : "(null)";
 				while (*str != '\0')
 				{
-					_putchar(*str++);
+					put_char(*str++);
 				}
 			}
 			else if (*format == 's')
@@ -58,13 +58,13 @@ void _printf(const char *format, ...)
 				str = *arg ? arg : "(null)";
 				while (*str != '\0')
 				{
-					_putchar(*str++);
+					put_char(*str++);
 				}
 			}
 		}
 		else
 		{
-			_putchar(*format);
+			put_char(*format);
 		}
 		format++;
 	}
