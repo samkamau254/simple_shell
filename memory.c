@@ -4,7 +4,7 @@
  * _free - frees a pointer
  * @ptr: pointer to be freed
  */
-void _free(void **ptr)
+void free_p(void **ptr)
 {
 	if (ptr && *ptr)
 	{

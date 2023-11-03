@@ -29,10 +29,10 @@ int std_error_printf(FILE *stream, const char *string)
 }
 
 /**
- * _printf - prints chars to stdout
+ * print_f- prints chars to stdout
  * @format: Format specifiers
  */
-void _printf(const char *format, ...)
+void print_f(const char *format, ...)
 {
 	va_list args;
 	const char *prog_name, *arg, *str;

@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _memcpy - copies n bytes from src to dest
+ * mem_cpy - copies n bytes from src to dest
  * @dest: bytes copied from src
  * @place: string to be copied
  * @k: no of bytes to be copied
