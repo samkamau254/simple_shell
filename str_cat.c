@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _strcat - concatenates two strings
+ * str_cat - concatenates two strings
  * @dest: initial string
  * @place: the string to be appended
  *

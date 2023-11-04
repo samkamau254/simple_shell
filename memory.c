@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _free - frees a pointer
+ * free_p - frees a pointer
  * @ptr: pointer to be freed
  */
 void free_p(void **ptr)
@@ -14,10 +14,10 @@ void free_p(void **ptr)
 }
 
 /**
- * _realloc - returns pointer to a new allocated block
+ * re_alloc - returns pointer to a new allocated block
  * @ptr: Pointer to be reallocated
  * @prev: Old size
- * @new_size: New size
+ * @n_size: New size
  *
  * Return: Pointer to void
  */

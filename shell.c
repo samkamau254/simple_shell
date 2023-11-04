@@ -37,7 +37,7 @@ void shdata_free(shdata_t *shell_data)
 }
 
 /**
- * tokenize_it - tokenizes the user input
+ * tokeni_ze - tokenizes the user input
  * @shell_data: The data of the structure
  * @prev_cmd: Old command
  */
